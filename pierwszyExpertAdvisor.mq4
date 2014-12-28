@@ -8,7 +8,7 @@
 #property version   "1.00"
 #property strict
 //--- input parameters
-input string   zmiennaZewnetrzna="Witaj Wwiecie";
+input string   zmiennaZewnetrzna="Witaj Œwiecie";
 //+------------------------------------------------------------------+
 //| Expert initialization function                                   |
 //+------------------------------------------------------------------+

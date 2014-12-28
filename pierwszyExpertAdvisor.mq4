@@ -15,6 +15,7 @@ input string   zmiennaZewnetrzna="Witaj Œwiecie";
 int OnInit()
   {
 //--- create timer
+   MessageBox(zmiennaZewnetrzna, "Nazwa naszego okna");
    EventSetTimer(60);
       
 //---

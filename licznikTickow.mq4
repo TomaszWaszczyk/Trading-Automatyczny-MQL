@@ -16,9 +16,9 @@ int OnInit()
   {
 //---
    Alert ("Funkcja init() wywolana na poczatku");    // Alert
-   //return(0);                                      // Wyjscie z init()
+   //return(0);                                      
 //---
-   return(INIT_SUCCEEDED);
+   return(INIT_SUCCEEDED);                            // Wyjscie z init()
   }
 //+------------------------------------------------------------------+
 //| Expert deinitialization function                                 |

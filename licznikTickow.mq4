@@ -44,4 +44,6 @@ void OnTick()
 void licznikTickow()
 {
    Count++; // Inkrementacja zmiennej Count;
+   
+   // return count; - ten kod powoduje b³¹d na poziomie kompilacji.
 }

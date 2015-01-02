@@ -35,8 +35,13 @@ void OnTick()
   {
 //---
   double aktualnaCena = Bid;
-  Count++;
+  licznikTickow(); // Wywolanie funkcji licznikTickow();
   Alert("Nowy tick- zmiana ceny: ",Count,"   Cena Ask to: ", Ask);
 
   }
 //+------------------------------------------------------------------+
+
+void licznikTickow()
+{
+   Count++; // Inkrementacja zmiennej Count;
+}

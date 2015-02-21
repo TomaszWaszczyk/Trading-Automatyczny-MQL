@@ -12,7 +12,7 @@
 #import
 
 // zmienn¹ naszInterwalCzasowy mozemy dowolnie modyfikowaæ
-extern int naszInterwalCzasowy = PERIOD_M30;
+int naszInterwalCzasowy = PERIOD_M30;
                    
 int start()
 {      

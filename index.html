@@ -44,7 +44,7 @@
 					<h4>Programowanie automatycznych strategii transakcyjnych</h4>
 					<h5>Część druga - zaawansowana 27.10.2015</h5>
 					<p>
-						<small>Created by <a href="http://www.blog.waszczyk.com">Tomasz Waszczyk</a> / <a href="https://twitter.com/boomattache">@Boomattache</a></small>
+						<small>Created by <a href="http://www.blog.waszczyk.com">Tomasz Waszczyk</a> / <a href="https://twitter.com/boomattache">Twitter @Boomattache</a></small>
 					</p>
 				</section>
 
@@ -240,24 +240,23 @@
 				<section>
 					<h2>Pretty Code</h2>
 					<pre><code class="c" data-trim contenteditable>
+void OnStart()
+{
+	int a = 2;
+	int b = 10;
 
-					void OnStart()
-					{
-						int a = 2;
-						int b = 10;
+	//suma
+	int suma = a + b;
+	Print("Suma " + suma);
 
-						//suma
-						int suma = a + b;
-						Print("Suma " + suma);
+	//zmiana znaku
+	int zmianaZnaku = -a;
+	Print("Zmiana znaku " + zmianaZnaku);
 
-						//zmiana znaku
-						int zmianaZnaku = -a;
-						Print("Zmiana znaku " + zmianaZnaku);
-
-						//reszta z dzielenia - modulo
-						int resztaZDzielenia = b % a;
-						Print("Reszta z dzielenia " + resztaZDzielenia);
-					}
+	//reszta z dzielenia - modulo
+	int resztaZDzielenia = b % a;
+	Print("Reszta z dzielenia " + resztaZDzielenia);
+}
 					</code></pre>
 					<p>Code syntax highlighting courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
 				</section>

@@ -239,21 +239,25 @@
 
 				<section>
 					<h2>Pretty Code</h2>
-					<pre><code class="hljs" data-trim contenteditable>
-function linkify( selector ) {
-  if( supports3DTransforms ) {
+					<pre><code class="c" data-trim contenteditable>
 
-    var nodes = document.querySelectorAll( selector );
+					void OnStart()
+					{
+						int a = 2;
+						int b = 10;
 
-    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
-      var node = nodes[i];
+						//suma
+						int suma = a + b;
+						Print("Suma " + suma);
 
-      if( !node.className ) {
-        node.className += ' roll';
-      }
-    }
-  }
-}
+						//zmiana znaku
+						int zmianaZnaku = -a;
+						Print("Zmiana znaku " + zmianaZnaku);
+
+						//reszta z dzielenia - modulo
+						int resztaZDzielenia = b % a;
+						Print("Reszta z dzielenia " + resztaZDzielenia);
+					}
 					</code></pre>
 					<p>Code syntax highlighting courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
 				</section>
@@ -374,7 +378,7 @@ Reveal.addEventListener( 'customevent', function() {
 
 				<section>
 					<h2>Disclaimer</h2>
-					<p>
+					<small>
 						„Niniejsza prezentacja jest efektem wspólnych prac Domu Maklerskiego TMS Brokers S.A. oraz Pana Tomasza Waszczyka
 
 						Materiały zawarte w niniejszej prezentacji mają charakter edukacyjny i nie stanowią działalności maklerskiej polegającej na doradztwie inwestycyjnym lub wydawaniu rekomendacji o charakterze ogólnym. Zaprezentowane podczas warsztatów (w tym w niniejszej prezentacji) algorytmy mają charakter jedynie poglądowy w celu zobrazowania i nauki języka programowania modułu Expert Advisor  dla systemu transakcyjnego MetaTrader. Korzystając z algorytmów klient powinien mieć na względzie, że:
@@ -388,7 +392,7 @@ Reveal.addEventListener( 'customevent', function() {
 						8.       Wszelkie przykładowe strategie algorytmiczne zaprezentowane w czasie niniejszego szkolenia mają jedynie charakter edukacyjny i nie powinny być stosowne na rachunkach rzeczywistych.
 
 						Dom Maklerski TMS Brokers S.A. podlega nadzorowi Komisji Nadzoru Finansowego i prowadzi działalność maklerską na podstawie zezwolenia z dnia 26 kwietnia 2004 r. (KPWiG-4021-54-1/2004). Kontakt: Skylight Ul. Złota 59; 00-120 Warszawa, Polska; Tel.: +48 22 27 66 200”
-					</p>
+					</small>
 				</section>
 
 

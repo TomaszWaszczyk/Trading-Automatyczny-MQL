@@ -2,6 +2,10 @@
 
 <!-- For highlighting reveal.js uses <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>
 MT: 22160297/////2902e69d
+
+Notatki:
+Pelny ekran: klawisz "F";
+Podglad: klawisz "o"
 -->
 
 <html lang="en">
@@ -9,7 +13,7 @@ MT: 22160297/////2902e69d
 	<head>
 		<meta charset="utf-8">
 
-		<title>reveal.js - The HTML Presentation Framework</title>
+		<title>Programowanie automatycznych strategii transakcyjnych, 27,28.10.2015</title>
 
 		<meta name="description" content="Programowanie automatycznych strategii transakcyjnych, 27,28.10.2015">
 		<meta name="author" content="Tomasz Waszczyk">
@@ -49,19 +53,11 @@ MT: 22160297/////2902e69d
 					<h4>Programowanie automatycznych strategii transakcyjnych</h4>
 					<h5>Część druga - zaawansowana 27.10.2015</h5>
 					<p>
-						<small>Created by <a href="http://www.blog.waszczyk.com">Tomasz Waszczyk</a> / <a href="https://twitter.com/boomattache">Twitter @Boomattache</a></small>
+						<small>Stworzone przez <a href="http://www.blog.waszczyk.com">Tomasz Waszczyk</a> / <a href="https://twitter.com/boomattache">Twitter @Boomattache</a></small>
 					</p>
 				</section>
 
 				<section>
-					<h3>Książka</h3>
-					<img width="50%" height="50%" src="resources/trading_automatyczny-waszczyk-probka.1-page-001.jpg" />
-				</section>
-
-
-
-				<section>
-					<h2>Disclaimer</h2>
 					<small>
 						„Niniejsza prezentacja jest efektem wspólnych prac Domu Maklerskiego TMS Brokers S.A. oraz Pana Tomasza Waszczyka
 
@@ -76,42 +72,64 @@ MT: 22160297/////2902e69d
 						8.       Wszelkie przykładowe strategie algorytmiczne zaprezentowane w czasie niniejszego szkolenia mają jedynie charakter edukacyjny i nie powinny być stosowne na rachunkach rzeczywistych.
 						Dom Maklerski TMS Brokers S.A. podlega nadzorowi Komisji Nadzoru Finansowego i prowadzi działalność maklerską na podstawie zezwolenia z dnia 26 kwietnia 2004 r. (KPWiG-4021-54-1/2004). Kontakt: Skylight Ul. Złota 59; 00-120 Warszawa, Polska; Tel.: +48 22 27 66 200”
 					</small>
+				</section>
+
+				<section>
+					<h3>Książka</h3>
+					<img width="40%" height="40%" src="resources/trading_automatyczny-waszczyk-probka.1-page-001.jpg" /><br>
+					<a href="https://www.investmentuniversity.pl/e-booki/trading-automatyczny" target="_blank">Pobierz</a>
+				</section>
+
+				<section>
+					<h2>Agenda</h2>
+					<ul>
+						<li>Uruchomienie strategii z poprzedniego szkolenia</li>
+						<li>Metody ustawiania zlecenia Stop Loss</li>
+						<li>Obliczanie poziomów zlecenia Take Profit</li>
+						<li>Wprowadzanie zleceń oczekujących do automatu</li>
+						<li>Zabezpieczenie naszego automatu transakcyjnego</li>
+						<li>Programowanie obiektowe – MQL5 różnice oraz możliwości</li>
+					</ul>
 
 				</section>
 
 				<section>
-					<iframe data-autoplay width="420" height="345" src="https://www.youtube.com/watch?v=z4nCTdQlH8w"></iframe>
-					<iframe data-autoplay width="420" height="345" src="https://www.youtube.com/watch?v=V43a-KxLFcg"></iframe>
-					<iframe width="420" height="345" src="https://www.youtube.com/watch?v=B_k_elbBz8c"></iframe>
-				</section>
-				<!-- Example of nested vertical slides -->
-				<section>
-					<iframe data-autoplay width="420" height="345" src="https://www.youtube.com/watch?v=V43a-KxLFcg"></iframe>
-
-
-				</section>
-				<section>
-					<iframe data-autoplay width="420" height="345" src="https://www.youtube.com/watch?v=z4nCTdQlH8w"></iframe>
-					<iframe data-autoplay width="420" height="345" src="https://www.youtube.com/watch?v=V43a-KxLFcg"></iframe>
-					<iframe width="420" height="345" src="https://www.youtube.com/watch?v=B_k_elbBz8c"></iframe>
-				</section>
-				<!-- Example of nested vertical slides -->
-				<section>
-					<iframe data-autoplay width="420" height="345" src="https://www.youtube.com/watch?v=V43a-KxLFcg"></iframe>
-
-
+					<h2>Czym jest HFT ?</h2>
+					<iframe data-autoplay width="520" height="445" src="http://www.youtube.com/embed/z4nCTdQlH8w"></iframe>
 				</section>
 
 				<section>
+					<h2>Przypomnienie z części pierwszej szkolenia</h2>
+					<a href="https://github.com/TomaszWaszczyk/Trading-Automatyczny-MQL/blob/master/pierwszyExpertAdvisor.mq4" target="_blank">Cały kod źródłowy</a> <br>
+					<pre><code class="c">
+#property copyright "Copyright 2015, MetaQuotes Software Corp."
+#property link      "https://www.waszczyk.com"
+#property version   "1.00"
+#property strict
 
-					<iframe width="420" height="345" src="https://www.youtube.com/watch?v=B_k_elbBz8c"></iframe>
+#define MAGIC_NUMBER 20151024
+#define OPEN_BUY_SIGNAL 1
+#define OPEN_SELL_SIGNAL -1
+#define NO_SIGNAL 0
 
+//--- input parameters
+// extern keyword defines parameters that can be set by the user in the
+// "Expert properties" dialog.
+extern int       OkresSzybkiejSredniej = 10;
+extern int       OkresWolnejSredniej  = 50;
+// These are in fractional pips, which are 0.1 of a pip.
+extern int       StopLoss      = 500;
+extern int       TakeProfit    = 1600;
+// Number of lots for each trade.
+extern double    Lots=1;
+					</code></pre>
 				</section>
+
 
 
 				<section>
 					<section>
-						<h2>Vertical Slides</h2>
+						<h2>Jak uruchomić strategię z poprzedniego szkolenia ?</h2>
 						<p>Slides can be nested inside of each other.</p>
 						<p>Use the <em>Space</em> key to navigate through all slides.</p>
 						<br>
@@ -121,8 +139,47 @@ MT: 22160297/////2902e69d
 					</section>
 					<section>
 						<h2>Basement Level 1</h2>
-						<p>Nested slides are useful for adding additional detail underneath a high level horizontal slide.</p>
+						<pre><code class="c" data-trim contenteditable>
+#property copyright "Copyright 2015, MetaQuotes Software Corp."
+#property link      "https://www.waszczyk.com"
+#property version   "1.00"
+#property strict
+
+#define MAGIC_NUMBER 20130715
+#define OPEN_BUY_SIGNAL 1
+#define OPEN_SELL_SIGNAL -1
+#define NO_SIGNAL 0
+
+//--- input parameters
+// extern keyword defines parameters that can be set by the user in the
+// "Expert properties" dialog.
+extern int       OkresSzybkiejSredniej = 10;
+extern int       OkresWolnejSredniej  = 50;
+// These are in fractional pips, which are 0.1 of a pip.
+extern int       StopLoss      = 500;
+extern int       TakeProfit    = 1600;
+// Number of lots for each trade.
+extern double    Lots=1;
+						</code></pre>
 					</section>
+
+
+
+					<section>
+						<h2>Basement Level 1</h2>
+						<pre><code class="c" data-trim contenteditable>
+void MaAktualneWartosci(double &ma[],int maPeriod,int numValues=3)
+{
+// i is the index of the price array to calculate the MA value for.
+// e.g. i=0 is the current price, i=1 is the previous bar's price.
+for(int i=0; i< numValues; i++)
+{
+	ma[i]=iMA(NULL,0,maPeriod,0,MODE_SMA,PRICE_CLOSE,i);
+}
+}
+						</code></pre>
+					</section>
+
 					<section>
 						<h2>Basement Level 2</h2>
 						<p>That's it, time to go back up.</p>
@@ -298,115 +355,10 @@ extern int       StopLoss      = 500;
 extern int       TakeProfit    = 1600;
 // Number of lots for each trade.
 extern double    Lots=1;
-//+------------------------------------------------------------------+
-//|                                                                  |
-//+------------------------------------------------------------------+
-void MaAktualneWartosci(double &ma[],int maPeriod,int numValues=3)
-  {
-// i is the index of the price array to calculate the MA value for.
-// e.g. i=0 is the current price, i=1 is the previous bar's price.
-   for(int i=0; i<numValues; i++)
-     {
-      ma[i]=iMA(NULL,0,maPeriod,0,MODE_SMA,PRICE_CLOSE,i);
-     }
-  }
-//+------------------------------------------------------------------+
-//|                                                                  |
-//+------------------------------------------------------------------+
-int OpenSignal()
-  {
-   int signal=NO_SIGNAL;
 
-// Execute only on the first tick of a new bar, to avoid repeatedly
-// opening orders when an open condition is satisfied.
-   if(Volume[0] > 1) return(0);
-
-//---- get Moving Average values
-
-   double shortMa[3];
-   MaAktualneWartosci(shortMa,OkresSzybkiejSredniej,3);
-
-   double longMa[3];
-   MaAktualneWartosci(longMa,OkresWolnejSredniej,3);
-
-//---- buy conditions
-   if(shortMa[2]<longMa[2]
-      && shortMa[1]>longMa[1])
-     {
-      signal=OPEN_BUY_SIGNAL;
-     }
-
-//---- sell conditions
-   if(shortMa[2]>longMa[2]
-      && shortMa[1]<longMa[1])
-     {
-      signal=OPEN_SELL_SIGNAL;
-     }
-
-//----
-   return(signal);
-  }
-//+------------------------------------------------------------------+
-//| Expert initialization function                                   |
-//+------------------------------------------------------------------+
-int OnInit()
-  {
-//---
-
-//---
-   return(INIT_SUCCEEDED);
-  }
-//+------------------------------------------------------------------+
-//| Expert deinitialization function                                 |
-//+------------------------------------------------------------------+
-void OnDeinit(const int reason)
-  {
-//---
-
-  }
-//+------------------------------------------------------------------+
-//| Expert tick function                                             |
-//+------------------------------------------------------------------+
-void OnTick()
-{
-   int signal=OpenSignal();
-
-// Set slippage to a large enough number to avoid error 138 - quote
-// outdated.
-   int slippage=30;
-
-   if(signal==OPEN_BUY_SIGNAL)
-     {
-      Print("Buy signal");
-      OrderSend(Symbol(),OP_BUY,Lots,Bid,slippage,
-                Bid-StopLoss*Point,// Stop loss price.
-                Bid+TakeProfit*Point,// Take profit price.
-                NULL,MAGIC_NUMBER,0,Green);
-     }
-
-   else if(signal==OPEN_SELL_SIGNAL)
-     {
-      Print("Sell signal");
-      OrderSend(Symbol(),OP_SELL,Lots,Ask,slippage,
-                Ask+StopLoss*Point,// Stop loss price.
-                Ask-TakeProfit*Point,// Take profit price.
-                NULL,MAGIC_NUMBER,0,Red);
-     }
-  }
-//+------------------------------------------------------------------+
 
 					</code></pre>
 
-				</section>
-
-				<section>
-					<h2>Marvelous List</h2>
-					<ul>
-						<li>No order here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-					</ul>
 				</section>
 
 				<section>
@@ -512,9 +464,7 @@ Reveal.addEventListener( 'customevent', function() {
 					</p>
 				</section>
 
-
 				<section>
-					<h2>Disclaimer</h2>
 					<small>
 						„Niniejsza prezentacja jest efektem wspólnych prac Domu Maklerskiego TMS Brokers S.A. oraz Pana Tomasza Waszczyka
 
@@ -527,11 +477,9 @@ Reveal.addEventListener( 'customevent', function() {
 						6.       Składanie, usuwanie lub modyfikowanie zleceń z wykorzystaniem mechanizmów algorytmicznych traktowane jest jako zlecenia złożone przez Klienta.
 						7.       W wersji webowej oraz mobilnej systemu transakcyjnego może nie istnieć możliwość uruchomienia strategii automatycznych.
 						8.       Wszelkie przykładowe strategie algorytmiczne zaprezentowane w czasie niniejszego szkolenia mają jedynie charakter edukacyjny i nie powinny być stosowne na rachunkach rzeczywistych.
-
 						Dom Maklerski TMS Brokers S.A. podlega nadzorowi Komisji Nadzoru Finansowego i prowadzi działalność maklerską na podstawie zezwolenia z dnia 26 kwietnia 2004 r. (KPWiG-4021-54-1/2004). Kontakt: Skylight Ul. Złota 59; 00-120 Warszawa, Polska; Tel.: +48 22 27 66 200”
 					</small>
 				</section>
-
 
 				<section>
 					<h2>Much more</h2>
@@ -545,15 +493,14 @@ Reveal.addEventListener( 'customevent', function() {
 				</section>
 
 				<section style="text-align: left;">
-					<h1>THE END</h1>
+					<h1>Dziękuję</h1>
 					<p>
-						- <a href="http://slides.com">Try the online editor</a> <br>
 						- <a href="https://github.com/hakimel/reveal.js">Source code &amp; documentation</a>
 					</p>
+					<a>Zapraszam do zadawania pytań.</a>
 				</section>
 
 			</div>
-
 		</div>
 
 		<script src="lib/js/head.min.js"></script>
@@ -582,6 +529,13 @@ Reveal.addEventListener( 'customevent', function() {
 				]
 			});
 
+			Reveal.configure({ slideNumber: true });
+			// Slide number formatting can be configured using these variables:
+			//  h: current slide's horizontal index
+			//  v: current slide's vertical index
+			//  c: current slide index (flattened)
+			//  t: total number of slides (flattened)
+			Reveal.configure({ slideNumber: 'c / t' });
 		</script>
 
 	</body>

@@ -257,6 +257,41 @@ void OnTick()
 					</script>
 				</section>
 
+				
+				<section>
+					<section>
+						<h2>Jak uruchomić strategię z poprzedniego szkolenia ?</h2>
+
+						<br>
+					</section>
+
+					<section>
+						<h2>Dlaczego potrzebujemy numValues = 3 ?</h2>
+						<pre><code class="c" data-trim contenteditable>
+void MaAktualneWartosci(double &ma[],int maPeriod,int numValues=3)
+{
+// i is the index of the price array to calculate the MA value for.
+// e.g. i=0 is the current price, i=1 is the previous bar's price.
+for(int i=0; i< numValues; i++)
+{
+	ma[i]=iMA(NULL,0,maPeriod,0,MODE_SMA,PRICE_CLOSE,i);
+}
+}
+						</code></pre>
+					</section>
+
+
+					<section>
+						<h2>Przetestujmy naszą strategię, rodzaje testów</h2>
+						
+						<ol>
+							<li>Forward testing</li>
+							<li>Backtesting </li>
+						</ol>
+					</section>
+				</section>
+
+
 				<section>
 					<h2>Programujemy skrypt zamykajacy wszystkie posiadane zlecenia...</h2>
 				</section>
@@ -350,44 +385,9 @@ void OnTick()
 							Alert("Wystąpił błąd numer: ",Error,"  \"",ErrorDescription(Error),"\"");
 							}
 							}
-						```
+							```
 					</script>
 				</section>
-
-				
-				<section>
-					<section>
-						<h2>Jak uruchomić strategię z poprzedniego szkolenia ?</h2>
-
-						<br>
-					</section>
-
-					<section>
-						<h2>Dlaczego potrzebujemy numValues = 3 ?</h2>
-						<pre><code class="c" data-trim contenteditable>
-void MaAktualneWartosci(double &ma[],int maPeriod,int numValues=3)
-{
-// i is the index of the price array to calculate the MA value for.
-// e.g. i=0 is the current price, i=1 is the previous bar's price.
-for(int i=0; i< numValues; i++)
-{
-	ma[i]=iMA(NULL,0,maPeriod,0,MODE_SMA,PRICE_CLOSE,i);
-}
-}
-						</code></pre>
-					</section>
-
-
-					<section>
-						<h2>Przetestujmy naszą strategię, rodzaje testów</h2>
-						
-						<ol>
-							<li>Forward testing</li>
-							<li>Backtesting </li>
-						</ol>
-					</section>
-				</section>
-
 
 				<section>
 					<h2>Jak zabezpieczać naszą pracę ? </h2>

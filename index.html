@@ -256,7 +256,102 @@ void OnTick()
 						```
 					</script>
 				</section>
-				
+
+
+				<section data-markdown>
+					<h2>Programujemy skrypt</h2>
+					<script type="text/template">
+						```
+						//+------------------------------------------------------------------+
+						//| script program start function                                    |
+						//+------------------------------------------------------------------+
+
+
+						#include <stdlib.mqh>
+							#include <stderror.mqh>
+
+							int              Max_odchylenie_od_ceny=20        ;
+
+							int start()
+							{
+							//----
+							int Tip=-1;
+
+							//
+
+							int total=OrdersTotal();
+
+
+							if (total==0)
+							{
+							Alert("Nie ma żadnych otwartych pozycji");
+							return;
+							}
+
+
+							for(int i=total; i>0;i--)
+							{
+							if (OrderSelect(i-1,SELECT_BY_POS)==true)
+							{
+							Tip=OrderType();
+							double Price=OrderOpenPrice();
+							int Ticket=OrderTicket();
+							double Lot=OrderLots();
+							string symbol=OrderSymbol();
+
+
+							switch(Tip)
+							{
+							case 0:                                                        //------ BUY
+							if ( OrderClose(Ticket,Lot,MarketInfo(symbol,MODE_BID),Max_odchylenie_od_ceny)==false )
+							{
+							obsluga_bledu();
+							}
+							break;
+							case 1:                                                       //------ SELL
+							if ( OrderClose(Ticket,Lot,MarketInfo(symbol,MODE_ASK),Max_odchylenie_od_ceny)==false )
+							{
+							obsluga_bledu();
+							}
+							break;
+							default:                                                     // ------ zlecenia oczekujące
+							if (  OrderDelete(Ticket)==false )
+							{
+							obsluga_bledu();
+							}
+							}
+
+							}
+							}
+							//----
+							return(0);
+							}
+							//+------------------------------------------------------------------+
+
+							void obsluga_bledu()
+							{
+
+							int Error=GetLastError();
+
+							switch(Error)
+							{
+							case 5:
+							Alert("Stara wersja terminalu klienckiego.");
+							break;
+							case 64:
+							Alert("Konto jest zablokowane.");
+							break;
+							case 133:
+							Alert("Handel jest zabroniony.");
+							break;
+							default:
+							Alert("Wystąpił błąd numer: ",Error,"  \"",ErrorDescription(Error),"\"");
+							}
+							}
+						```
+					</script>
+				</section>
+
 				
 				<section>
 					<section>
